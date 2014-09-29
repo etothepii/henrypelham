@@ -1,0 +1,27 @@
+extends layout
+
+block header
+  h1 #{name}
+
+block summary
+  p The only poll that matters.
+
+block content
+  - if (!user) {
+    div(class='panel panel-default')
+      div.panel-heading
+        | Tallying App
+      div.panel-body
+        p After a hard fought campaign it can be difficult to motivate oneself
+          | to carefully tally the ballots as they are verified out of the ballot
+          | box. However, this is most detailed polling data that you are ever
+          | likely to get access to being broken down on a polling district by
+          | polling district basis.
+        p Our app, currently only available for android and windows phone, makes tallying easy.
+          | The elections running that day are known to it in advance with the
+          | candidates pre-entered. All that remains is to tap each candidate as
+          | each vote is seen.
+  - }
+  - else {
+      include countupAdmin
+  - }

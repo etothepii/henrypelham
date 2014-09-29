@@ -1,0 +1,23 @@
+{
+  "author": "Etothepii Ltd",
+  "name": "henrypelham",
+  "description": "Web Service for Frederick North Applications",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "mysql": "*",
+    "node-mysql": "*",
+    "socket.io": "*",
+    "orm": "*",
+    "forever": "*",
+    "querystring": "*",
+    "chai": "*",
+    "mocha": "*",
+    "ejs": ">= 0.0.0",
+    "passport": ">= 0.0.0",
+    "util": "*",
+    "passport-google-oauth": ">= 0.0.0",
+    "express": "3.4.7",
+    "jade": "*"
+  }
+}
