@@ -3,7 +3,8 @@ var express = require('express')
   , util = require('util')
   , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
   , path = require('path')
-  , socketio = require('socket.io');
+  , socketio = require('socket.io')
+  , db = require('./lib/frederickNorthDB');
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -77,7 +78,10 @@ app.get('/index', function(req, res){
 });
 
 app.get('/leaflet', function(req, res){
-  res.render('leaflet', { user: req.user });
+  res.render('leaflet', { 
+    user: req.user,
+    db: db
+  });
 });
 
 app.get('/election', function(req, res){
@@ -102,8 +106,10 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-console.log("Launching site on port: " + process.env.SITE_PORT);
-app.listen(process.env.SITE_PORT);
+db.connect(function() {
+  console.log("Launching site on port: " + process.env.SITE_PORT);
+  app.listen(process.env.SITE_PORT);
+});
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
