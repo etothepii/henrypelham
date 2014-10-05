@@ -77,11 +77,17 @@ app.get('/index', function(req, res){
   res.render('index', { user: req.user });
 });
 
-app.get('/leaflet', function(req, res){
-  res.render('leaflet', { 
-    user: req.user,
-    db: db
+app.get('/watching', ensureAuthenticated, function(req, res) {
+  db.getWatching(req.user.emails[0].value, function(err, rootAreas) {
+    res.render('watching', { 
+      user: req.user,
+      rootAreas: rootAreas
+    });
   });
+});
+
+app.get('/leaflet', function(req, res){
+  res.render('leaflet', { user: req.user });
 });
 
 app.get('/election', function(req, res){
