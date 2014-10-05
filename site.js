@@ -78,7 +78,8 @@ app.get('/index', function(req, res){
 });
 
 app.get('/watching', ensureAuthenticated, function(req, res) {
-  db.getWatching(req.user.emails[0].value, function(err, rootAreas) {
+  console.log("Requested watching list :%s", req.user.id);
+  db.getWatching(req.user.id, function(err, rootAreas) {
     if (err) {
       res.render('error', {
        err: err
