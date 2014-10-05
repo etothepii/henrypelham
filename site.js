@@ -79,10 +79,17 @@ app.get('/index', function(req, res){
 
 app.get('/watching', ensureAuthenticated, function(req, res) {
   db.getWatching(req.user.emails[0].value, function(err, rootAreas) {
-    res.render('watching', { 
-      user: req.user,
-      rootAreas: rootAreas
-    });
+    if (err) {
+      res.render('error', {
+       err: err
+      }); 
+    }
+    else {
+      res.render('watching', { 
+        user: req.user,
+        rootAreas: rootAreas
+      });
+    }
   });
 });
 
