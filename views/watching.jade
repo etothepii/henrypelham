@@ -1,1 +1,23 @@
-p You are trying to watch #{rootAreas.length} routes
+mixin printChildren(boundedArea) 
+  - console.log("Printing children of %s", boundedArea.NAME);
+  - var children = boundedArea.children;
+  - if (children == null || children.length == 0) {
+    - return;
+  - }
+  ul
+    - for (var index = 0; index < children.length; index++) {
+      - var child = children[index];
+      li #{child.NAME}
+      - console.log("Printing %s child of %s", child.NAME, boundedArea.NAME);
+      + printChildren(child)
+    - }
+
+- console.log("Started rendering watching");
+- for (var index = 0; index < rootAreas.length; index++) {
+  - var boundedArea = rootAreas[index];
+  div(class='panel panel-default')
+    div.panel-heading
+      | #{boundedArea.NAME}
+    div.panel-body
+      + printChildren(boundedArea)
+- }
