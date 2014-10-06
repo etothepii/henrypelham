@@ -1,15 +1,24 @@
 mixin printChildren(boundedArea) 
   - console.log("Printing children of %s", boundedArea.NAME);
   - var children = boundedArea.children;
-  - if (children == null || children.length == 0) {
+  - var routes = boundedArea.routes;
+  - if ((children == null || children.length == 0) && (routes == null || routes.length == 0)) {
     - return;
   - }
   ul
-    - for (var index = 0; index < children.length; index++) {
-      - var child = children[index];
-      li #{child.NAME}
-      - console.log("Printing %s child of %s", child.NAME, boundedArea.NAME);
-      + printChildren(child)
+    - if (children != null && children.length > 0) {
+      - for (var index = 0; index < children.length; index++) {
+        - var child = children[index];
+        li #{child.NAME}
+        - console.log("Printing %s child of %s", child.NAME, boundedArea.NAME);
+        + printChildren(child)
+      - }
+    - }  
+    - if (routes != null && routes.length > 0) {
+      - for (var index = 0; index < routes.length; index++) {
+        - var route = routes[index];
+        li.route #{route.NAME}
+      - }
     - }
 
 - console.log("Started rendering watching");
