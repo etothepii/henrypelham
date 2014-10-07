@@ -19,6 +19,9 @@ case $1 in
         npm install
         node $pwd/site.js
 	;;
+"TEST")
+        mocha
+        ;;
 "SYNC")
         git fetch
 	if [ "$#" -ne 2 ]
