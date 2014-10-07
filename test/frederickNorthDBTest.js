@@ -7,7 +7,7 @@ describe("frederickNorthDB", function() {
         db.getLeaflets(100274569354905081446, function(err, leaflets) {
           expect(err).to.equal(null);
           expect(leaflets.length).to.equal(1);
-          expect(leaflets[0]).to.equal("78bb9ca9-1c5c-474d-b02e-14d698eef0f7");
+          expect(leaflets[0].ID).to.equal("78bb9ca9-1c5c-474d-b02e-14d698eef0f7");
           done();
         });
       });
