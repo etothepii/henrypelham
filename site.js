@@ -78,8 +78,25 @@ app.get('/index', function(req, res){
 });
 
 app.get('/watching', ensureAuthenticated, function(req, res) {
-  console.log("Requested watching list :%s", req.user.id);
-  db.getWatching(req.user.id, function(err, rootAreas) {
+  db.getLeaflets(req.user.id, function(err, leaflets) {
+    if (err) {
+      res.render('error', {
+        err: err
+      });
+    }
+    else {
+      res.render('leafletSelector', {
+        user: req.user,
+        leaflets: leaflets
+      });
+    }
+  });
+});
+
+app.get('/watching/:leafletId', ensureAuthenticated, function(req, res) {
+  var leafletId = req.params.leafletId;
+  console.log("Requested watching list :%s for leaflet: %s", req.user.id, leafletId);
+  db.getWatching(req.user.id, function(err, rootAreas, leafletId) {
     if (err) {
       res.render('error', {
        err: err

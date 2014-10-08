@@ -1,0 +1,21 @@
+- if (leaflets.length == 0) {
+  p You are not watching any leaflet deliveries.
+- }
+- else {
+    select(id='leafletSelector' onchange='loadSelected()')
+      - for (var index = 0; index < leaflets.length; index++) {
+        option(value='#{leaflets[index].ID}') #{leaflets[index].TITLE}
+      - }
+    div(id='watchingLeaflet')
+    script.
+      $(document).ready(function() {
+        loadSelected();
+      });
+      function loadSelected() {
+        var target = document.getElementById('watchingLeaflet');
+        var spinner = new Spinner(spinnerOpts).spin(target);
+        var s = document.getElementById("leafletSelector");
+        var leafletId = s.options[s.selectedIndex].value;
+        $("#watchingLeaflet").load("watching/" + leafletId);
+      };
+- }
