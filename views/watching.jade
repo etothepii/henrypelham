@@ -4,18 +4,26 @@ mixin printChildren(boundedArea)
   - if ((children == null || children.length == 0) && (routes == null || routes.length == 0)) {
     - return;
   - }
-  ul
+  ul.tree
     - if (children != null && children.length > 0) {
       - for (var index = 0; index < children.length; index++) {
         - var child = children[index];
-        li #{child.NAME}
+        - var liClass = 'tree';
+        - if (index == children.length - 1 && (routes == null || routes.length == 0)) {
+          - liClass += ' last';
+        - }
+        li(class="#{liClass}") #{child.NAME}
         + printChildren(child)
       - }
     - }  
     - if (routes != null && routes.length > 0) {
       - for (var index = 0; index < routes.length; index++) {
         - var route = routes[index];
-        li.route #{route.NAME} (#{route.size})
+        - var liClass = 'route tree';
+        - if (index == routes.length - 1) {
+          - liClass += ' last';
+        - }
+        li(class="#{liClass}") #{route.NAME} (#{route.size})
       - }
     - }
 
