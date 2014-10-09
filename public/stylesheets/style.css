@@ -53,10 +53,10 @@ ul.tree li.last {
 span.treeExpander {
     padding-top:1px;
     padding-left: 1px;
-    margin-right:2px;
+    margin-right:3px;
 }
 
 span.treeContractor {
     padding-top:1px;
-    margin-right:2px;
+    margin-right:3px;
 }
