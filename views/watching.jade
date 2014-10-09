@@ -1,7 +1,14 @@
 mixin printBoundedAreaNode(boundedArea, hidden)
+  - var remaining = "";
+  - if (boundedArea.deliveryStatus) {
+    - var delivered = boundedArea.deliveryStatus.complete;
+    - var total = boundedArea.deliveryStatus.remaining + delivered;  
+    - remaining = "(" + delivered + "/" + total + ")";
+  - }
   a(id="a#{boundedArea.ID}" onclick="expandTree('#{boundedArea.ID}')") 
     span(id="span#{boundedArea.ID}" class="treeExpander glyphicon glyphicon-plus")
-  span #{boundedArea.NAME}
+  span #{boundedArea.NAME} #{remaining}
+
 mixin printChildren(boundedArea) 
   - var children = boundedArea.children;
   - var routes = boundedArea.routes;
@@ -25,6 +32,9 @@ mixin printChildren(boundedArea)
       - for (var index = 0; index < routes.length; index++) {
         - var route = routes[index];
         - var liClass = 'route tree';
+        - if (route.leafletMap.DELIVERED) {
+          - liClass += ' done'
+        - }
         - if (index == routes.length - 1) {
           - liClass += ' last';
         - }

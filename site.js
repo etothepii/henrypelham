@@ -96,7 +96,7 @@ app.get('/watching', ensureAuthenticated, function(req, res) {
 app.get('/watching/:leafletId', ensureAuthenticated, function(req, res) {
   var leafletId = req.params.leafletId;
   console.log("Requested watching list :%s for leaflet: %s", req.user.id, leafletId);
-  db.getWatching(req.user.id, function(err, rootAreas, leafletId) {
+  db.getWatching(req.user.id, leafletId, function(err, rootAreas, leafletId) {
     if (err) {
       res.render('error', {
        err: err
