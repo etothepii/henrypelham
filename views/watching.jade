@@ -1,10 +1,13 @@
+mixin printBoundedAreaNode(boundedArea, hidden)
+  a(id="a#{boundedArea.ID}" onclick="expandTree('#{boundedArea.ID}')") +
+  span #{boundedArea.NAME}
 mixin printChildren(boundedArea) 
   - var children = boundedArea.children;
   - var routes = boundedArea.routes;
   - if ((children == null || children.length == 0) && (routes == null || routes.length == 0)) {
     - return;
   - }
-  ul.tree
+  ul(class="tree hidden" id="ul#{boundedArea.ID}")
     - if (children != null && children.length > 0) {
       - for (var index = 0; index < children.length; index++) {
         - var child = children[index];
@@ -12,7 +15,8 @@ mixin printChildren(boundedArea)
         - if (index == children.length - 1 && (routes == null || routes.length == 0)) {
           - liClass += ' last';
         - }
-        li(class="#{liClass}") #{child.NAME}
+        li(class="#{liClass}") 
+        + printBoundedAreaNode(child)
         + printChildren(child)
       - }
     - }  
@@ -33,5 +37,6 @@ mixin printChildren(boundedArea)
     div.panel-heading
       | #{boundedArea.NAME}
     div.panel-body
+      + printBoundedAreaNode(boundedArea)
       + printChildren(boundedArea)
 - }
