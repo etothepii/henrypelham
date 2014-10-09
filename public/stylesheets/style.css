@@ -36,19 +36,27 @@ ul.tree, ul.tree ul {
     list-style-type: none;
     background: url(../images/vline.png) repeat-y;
     margin: 0;
+    margin-left: 7px;
     padding: 0;
 }
 
-ul.tree ul {
-    margin-left: 10px;
-}
-
 ul.tree li {
-    padding-left: 12px;
+    padding-left: 13px;
     line-height: 20px;
     background: url(../images/node.png) no-repeat;
 }
 
 ul.tree li.last {
     background: #fff url(../images/lastnode.png) no-repeat;
+}
+
+span.treeExpander {
+    padding-top:1px;
+    padding-left: 1px;
+    margin-right:2px;
+}
+
+span.treeContractor {
+    padding-top:1px;
+    margin-right:2px;
 }

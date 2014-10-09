@@ -1,5 +1,6 @@
 mixin printBoundedAreaNode(boundedArea, hidden)
-  a(id="a#{boundedArea.ID}" onclick="expandTree('#{boundedArea.ID}')") +
+  a(id="a#{boundedArea.ID}" onclick="expandTree('#{boundedArea.ID}')") 
+    span(id="span#{boundedArea.ID}" class="treeExpander glyphicon glyphicon-plus")
   span #{boundedArea.NAME}
 mixin printChildren(boundedArea) 
   - var children = boundedArea.children;
@@ -16,8 +17,8 @@ mixin printChildren(boundedArea)
           - liClass += ' last';
         - }
         li(class="#{liClass}") 
-        + printBoundedAreaNode(child)
-        + printChildren(child)
+          + printBoundedAreaNode(child)
+          + printChildren(child)
       - }
     - }  
     - if (routes != null && routes.length > 0) {
