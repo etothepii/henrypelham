@@ -60,3 +60,6 @@ span.treeContractor {
     padding-top:1px;
     margin-right:3px;
 }
+li.done {
+    text-decoration: line-through;
+}
