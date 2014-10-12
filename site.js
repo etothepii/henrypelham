@@ -123,6 +123,17 @@ app.get('/purchase', function(req, res){
   res.render('purchase', { user: req.user });
 });
 
+app.get('/pl/:leafletMapId', function (req, res) {
+  db.getLeafletMap(leafletMapId, function(err, leafletMap) {
+    if (err) {
+      res.render('error', {err: err});
+    }
+    else {
+      res.render('routeDelivered', { leafletMap: leafletMap });
+    }
+  });
+});
+
 app.get('/auth/google',
   passport.authenticate('google', {scope: 'profile'}));
 
