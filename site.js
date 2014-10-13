@@ -124,7 +124,7 @@ app.get('/purchase', function(req, res){
 });
 
 app.get('/pl/:leafletMapId', function (req, res) {
-  db.getLeafletMap(req.params.leafletMapId, function(err, leafletMap) {
+  db.getLeafletMapAndMarkAsDelivered(req.params.leafletMapId, function(err, leafletMap) {
     if (err) {
       res.render('error', {err: err});
     }
